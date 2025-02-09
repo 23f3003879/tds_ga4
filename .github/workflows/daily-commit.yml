@@ -2,7 +2,7 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: '50 12 * * *'  # This will run at 12:42 PM UTC (which is 6:12 PM IST)
+    - cron: '45 12 * * *'  # This will run at 12:42 PM UTC (which is 6:12 PM IST)
   workflow_dispatch:  # Allows you to manually trigger the workflow
 
 jobs:
@@ -12,6 +12,11 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
+      
+      - name: Set Git configuration
+        run: |
+          git config --global user.email "23f3003879@ds.study.iitm.ac.in"
+          git config --global user.name "Daily Commit"
       
       - name: Make a dummy change and commit
         run: |
