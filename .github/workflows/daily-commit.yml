@@ -13,7 +13,7 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v3
       
-      - name: Set Git configuration
+      - name: Set Git configuration with email 23f3003879@ds.study.iitm.ac.in
         run: |
           git config --global user.email "23f3003879@ds.study.iitm.ac.in"
           git config --global user.name "Daily Commit"
@@ -23,7 +23,7 @@ jobs:
           echo "Update file $(date)" >> daily-commit.txt
           git add daily-commit.txt
           git commit -m "Daily commit at $(date)" --author="Daily Commit <23f3003879@ds.study.iitm.ac.in>"
-
-      - name: Push changes
+      
+      - name: Push changes using GITHUB_TOKEN
         run: |
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/23f3003879/tds_ga4.git
