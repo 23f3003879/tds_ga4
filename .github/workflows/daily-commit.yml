@@ -2,7 +2,7 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: '45 12 * * *'  # This will run at 12:42 PM UTC (which is 6:12 PM IST)
+    - cron: '42 12 * * *'  # This will run at 12:42 PM UTC (which is 6:12 PM IST)
   workflow_dispatch:  # Allows you to manually trigger the workflow
 
 jobs:
@@ -23,4 +23,7 @@ jobs:
           echo "Update file $(date)" >> daily-commit.txt
           git add daily-commit.txt
           git commit -m "Daily commit at $(date)" --author="Daily Commit <23f3003879@ds.study.iitm.ac.in>"
-          git push
+
+      - name: Push changes
+        run: |
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/23f3003879/tds_ga4.git
